@@ -1,3 +1,5 @@
+const path = require('path')
+
 const patterns = [
     // regex-patterns by Michael Smith (@moneals on GitHub, https://github.com/moneals) <3
 	{
@@ -334,8 +336,9 @@ const patterns = [
 ]
 
 module.exports = async () => {
-	let tlds = await Bun.file('./tlds.json').json()
+	let tlds = await Bun.file(path.join(import.meta.path, 'tlds.json')).json()
 	tlds = tlds.map(tld => tld.toLowerCase())
 	tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
 	return patterns
 }	
+
