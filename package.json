@@ -12,6 +12,9 @@
   },
   "author": "Matteo Camillo Ludovico",
   "license": "ISC",
+  "keywords": [
+    "bun", "javascript", "whois", "js", "whois-parser"
+  ],
   "bugs": {
     "url": "https://github.com/caamillo/bun-whois-parser/issues"
   },
