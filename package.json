@@ -1,0 +1,19 @@
+{
+  "name": "bun-whois-parser",
+  "version": "1.0.0",
+  "description": "A Bun whois parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caamillo/bun-whois-parser.git"
+  },
+  "author": "Matteo Camillo Ludovico",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caamillo/bun-whois-parser/issues"
+  },
+  "homepage": "https://github.com/caamillo/bun-whois-parser#readme"
+}
