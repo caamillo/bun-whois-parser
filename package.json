@@ -2,7 +2,7 @@
   "name": "bun-whois-parser",
   "version": "1.0.0",
   "description": "A Bun whois parser",
-  "main": "index.js",
+  "main": "parser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
