@@ -1,4 +1,4 @@
-## Bun whois parser
+# Bun whois parser
 
 (WIP) Currently not working to ALL tlds<br>
 You can see the regex-patterns in `patterns.js`<br>
