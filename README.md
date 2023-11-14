@@ -6,7 +6,7 @@ You can see the regex-patterns in `patterns.js`<br>
 (Big thanks to [@moneals](https://github.com/moneals) for writing most of the regex <3)
 
 ### How does it work?
-1. Makes an object of all the hard coded TLD regex pattern (you can see them inside `pattern.js`).
+1. Makes an object of all the hard coded TLD regex pattern (you can see them inside `patterns.js`).
 ```js
 // Example of regex-pattern, useful to make your regex
 {
