@@ -1,3 +1,4 @@
+let tlds = require('./tlds.json')
 const path = require('path')
 
 const patterns = [
@@ -336,7 +337,6 @@ const patterns = [
 ]
 
 module.exports = async () => {
-	let tlds = await Bun.file(path.join(import.meta.path, 'tlds.json')).json()
 	tlds = tlds.map(tld => tld.toLowerCase())
 	tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
 	return patterns
