@@ -31,6 +31,11 @@ You can see the regex-patterns in `patterns.js`<br>
 3. Now checks the `tlds.json` file and if a tld is not given, then it makes an empty pattern object (with default-pattern active)
 4. Your parse it's ready sir!
 
+## Features
+- Fastest whois-parser `0,04s`
+- Domain name auto detection
+- Domain name wrapper from URL
+
 ## TODOs
 
 - [ ] better `./tlds.json`
