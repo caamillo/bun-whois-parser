@@ -13,10 +13,17 @@
   "author": "Matteo Camillo Ludovico | @caamillo",
   "license": "ISC",
   "keywords": [
-    "bun", "javascript", "whois", "js", "whois-parser"
+    "bun",
+    "javascript",
+    "whois",
+    "js",
+    "whois-parser"
   ],
   "bugs": {
     "url": "https://github.com/caamillo/bun-whois-parser/issues"
   },
-  "homepage": "https://github.com/caamillo/bun-whois-parser#readme"
+  "homepage": "https://github.com/caamillo/bun-whois-parser#readme",
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  }
 }

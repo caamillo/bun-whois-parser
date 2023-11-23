@@ -40,7 +40,7 @@ You can see the regex-patterns in `patterns.js`<br>
 ## TODOs
 
 - [ ] better `./tlds.json`
-- [ ] parse dates using `dateFormat` attribute
+- [x] parse dates using `dateFormat` attribute
 - [ ] use `rateLimited`
 
 Please consider to collaborate on that. The more regex-patterns we write, the better it is.

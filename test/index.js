@@ -7,4 +7,4 @@ const [ , match ] = url.match(urlToDomain)
 */
 const url = 'https://user@caamillo.it/verme.it'
 
-console.log(parser(testWhois, url))
+console.log(parser(testWhois))

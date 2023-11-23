@@ -1,6 +1,17 @@
 const patterns = require('./patterns')
 const { findDomain, wrapDomain } = require('./utils')
 
+// Deps
+const dayjs = require('dayjs')
+const customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
+
+const DATE_KEYS = [
+	'updatedDate',
+	'creationDate',
+	'expirationDate'
+]
+
 const sanify = (parsed, etc) => {
 	Object.keys(parsed).map(key => {
 		let value = parsed[key]
@@ -13,25 +24,36 @@ const sanify = (parsed, etc) => {
 	return parsed
 }
 
-const parse = (data, { tld, regex, etc }) => {
+const parse = (data, { tld, regex, etc }, toISO) => {
 	const parsed = {}
 	parsed.tld = tld
+
 	if (data.match(etc.notFound)) parsed.available = true
 	else parsed.available = false
+
 	Object.keys(regex).map(key => {
 		const match = data.match(regex[key])?.slice(-1)?.join()
 		parsed[key] = match
 	})
-	// TODO format dates
+
+	for (let dateKey of DATE_KEYS) {
+		const stringDate = parsed[dateKey]
+
+		if (stringDate) parsed[dateKey] = etc.dateFormat ? dayjs(stringDate, etc.dateFormat).format() : dayjs(stringDate).format()
+		else continue
+
+		if (parsed[dateKey] === 'Invalid Date') parsed[dateKey] = stringDate
+		else parsed[dateKey] = toISO ? new Date(parsed[dateKey]).toISOString() : parsed[dateKey]
+	}
+	
 	return sanify(parsed)
 }
 
 
-module.exports = (data, url=undefined) => {
+module.exports = (data, url=undefined, toISO=true) => {
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
-	console.log(domain)
 	if (!domain) return undefined
-	const tld = domain.split('.').slice(-1).join() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
+	const tld = domain.split('.').slice(-1).join().toLowerCase() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
 	if (!tld) return undefined
 
 	let pattern = patterns.find(el => el.tld === tld)
@@ -47,5 +69,5 @@ module.exports = (data, url=undefined) => {
 		}
 	} : patterns[0]
 
-	return parse(data, pattern)
+	return parse(data, pattern, toISO)
 }
