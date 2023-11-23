@@ -1,4 +1,4 @@
-let tlds = require('./tlds.json').map(tld => tld.toLowerCase())
+let tlds = require('./tlds.json')
 
 const patterns = [
     // regex-patterns by Michael Smith (@moneals on GitHub, https://github.com/moneals) <3

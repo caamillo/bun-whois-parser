@@ -1,4 +1,5 @@
 const testWhois = await Bun.file('./test-whois.txt').text()
 const parser = require('../')
 
-console.log(parser(testWhois, 'caamillo.it'))
+//console.log(parser(testWhois))
+console.log(parser(testWhois))
