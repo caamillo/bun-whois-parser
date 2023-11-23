@@ -1,6 +1,6 @@
 # Bun whois parser
 
-### _(WIP) Currently not working to ALL tlds_<br>
+### _(WIP) Not tested to ALL tlds_<br>
 You can see the regex-patterns in `patterns.js`<br>
 
 (Big thanks to [@moneals](https://github.com/moneals) for writing most of the regex <3)
@@ -39,8 +39,9 @@ You can see the regex-patterns in `patterns.js`<br>
 
 ## TODOs
 
-- [ ] better `./tlds.json`
-- [x] parse dates using `dateFormat` attribute
-- [ ] use `rateLimited`
+- [x] Parse dates using `dateFormat` attribute
+- [ ] Better `./tlds.json`
+- [ ] Use `rateLimited`
+- [ ] Make tests to run whois in various tlds to search which one can't be parsed
 
 Please consider to collaborate on that. The more regex-patterns we write, the better it is.
