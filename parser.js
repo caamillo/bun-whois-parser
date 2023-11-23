@@ -1,5 +1,5 @@
 const patterns = require('./patterns')
-const { findDomain } = require('./utils')
+const { findDomain, wrapDomain } = require('./utils')
 
 const sanify = (parsed, etc) => {
 	Object.keys(parsed).map(key => {
@@ -27,8 +27,8 @@ const parse = (data, { tld, regex, etc }) => {
 }
 
 
-module.exports = (data, domain=undefined) => {
-	domain = domain ?? findDomain(data, patterns)
+module.exports = (data, url=undefined) => {
+	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
 	const tld = domain.split('.').slice(-1).join() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
 	
 	let pattern = patterns.find(el => el.tld === tld)

@@ -1,3 +1,7 @@
+const wrapDomain = (url) =>
+    url.match(/(?:\/)?((?!www\.|@)\b\w{1,}\b\..*?)(?:\/|\?|$)/ig)[0]
+        .replaceAll('/', '')
+
 const findDomain = (data, patterns) => {
     const domainNamePatterns = patterns.map(pattern => {
         if (pattern.regex?.domainName) return pattern.regex.domainName
@@ -28,5 +32,5 @@ const findDomain = (data, patterns) => {
 }
 
 module.exports = {
-    findDomain
+    findDomain, wrapDomain
 }
