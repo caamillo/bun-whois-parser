@@ -5,6 +5,6 @@ const parser = require('../')
 const urlToDomain = /(?:\/)?((?!www\.|@)\b\w{1,}\b\..*?)(?:\/|\?|$)/
 const [ , match ] = url.match(urlToDomain)
 */
-const url = 'https://user@caamillo.it/'
+const url = 'https://user@caamillo.it/verme.it'
 
 console.log(parser(testWhois, url))
