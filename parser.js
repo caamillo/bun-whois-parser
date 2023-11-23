@@ -29,7 +29,7 @@ const parse = (data, { tld, regex, etc }) => {
 
 module.exports = (data, domain=undefined) => {
 	domain = domain ?? findDomain(data, patterns)
-	const tld = domain.split('.').slice(-1).join() // That seems wrong. Because .co.br would be wrapped into .br; but trust me it works
+	const tld = domain.split('.').slice(-1).join() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
 	
 	let pattern = patterns.find(el => el.tld === tld)
 	pattern = pattern ? {
