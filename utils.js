@@ -1,6 +1,5 @@
 const wrapDomain = (url) =>
-    url.match(/(?:\/)?((?!www\.|@)\b\w{1,}\b\..*?)(?:\/|\?|$)/ig)[0]
-        .replaceAll('/', '')
+    url.match(/(?:\/)?((?!www\.)\b\w{1,}\b\..*?)(?:\/|\?|$)/)[1] // Grab the group
 
 const findDomain = (data, patterns) => {
     const domainNamePatterns = patterns.map(pattern => {
