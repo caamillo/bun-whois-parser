@@ -1,6 +1,6 @@
 {
   "name": "bun-whois-parser",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Bun whois parser",
   "main": "parser.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/caamillo/bun-whois-parser.git"
   },
-  "author": "Matteo Camillo Ludovico",
+  "author": "Matteo Camillo Ludovico | @caamillo",
   "license": "ISC",
   "keywords": [
     "bun", "javascript", "whois", "js", "whois-parser"

@@ -1,5 +1,4 @@
-let tlds = require('./tlds.json')
-const path = require('path')
+let tlds = require('./tlds.json').map(tld => tld.toLowerCase())
 
 const patterns = [
     // regex-patterns by Michael Smith (@moneals on GitHub, https://github.com/moneals) <3
@@ -336,9 +335,7 @@ const patterns = [
 	}
 ]
 
-module.exports = async () => {
-	tlds = tlds.map(tld => tld.toLowerCase())
-	tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
-	return patterns
-}	
+tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
+
+module.exports = patterns
 

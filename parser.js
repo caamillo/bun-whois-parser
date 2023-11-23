@@ -1,3 +1,5 @@
+const patterns = require('./patterns')
+
 const sanify = (parsed, etc) => {
 	Object.keys(parsed).map(key => {
 		let value = parsed[key]
@@ -23,8 +25,7 @@ const parse = (data, { tld, regex, etc }) => {
 	return sanify(parsed)
 }
 
-module.exports = async (data, url) => {
-	const patterns = await require('./patterns')()
+module.exports = (data, url) => {
 	const tld = url.split('.').slice(-1).join() // wrap TLD
 	let pattern = patterns.find(el => el.tld === tld)
 	pattern = pattern ? {
