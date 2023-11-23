@@ -32,8 +32,9 @@ You can see the regex-patterns in `patterns.js`<br>
 4. Your parse it's ready sir!
 
 ## Features
-- Fastest whois-parser `0,04s`
-- Domain name auto detection
+- Fastest whois-parser `0,04s`,
+- Offline and sync,
+- Domain name auto detection,
 - Domain name wrapper from URL
 
 ## TODOs
