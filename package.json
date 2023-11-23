@@ -1,6 +1,6 @@
 {
   "name": "bun-whois-parser",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A Bun whois parser",
   "main": "parser.js",
   "scripts": {
