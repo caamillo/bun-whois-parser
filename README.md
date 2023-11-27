@@ -24,6 +24,15 @@ try {
 }
 ```
 
+## Parameters
+
+| **Key**   | Description                                              | Default   |
+|-----------|----------------------------------------------------------|-----------|
+| data      | whois raw data                                           | undefined |
+| url?      | fetched url/domain                                       | undefined |
+| toISO?    | parse all dates into ISO format                          | true      |
+| optimize? | dangerous, read more in the "Optimize Parameter" section | false     |
+
 ## Response
 
 Basically a json with the following description:
@@ -65,6 +74,11 @@ Basically a json with the following description:
 3. Now checks the `tlds.json` file and if a tld is not given, then it makes an empty pattern object (with default-pattern active)
 4. Your parse it's ready sir!
 
+## Optimize Parameter
+
+Use the algorithm avoiding adding all the tlds that are not found in `patterns.js`.
+This parameter is setted to off by default, but you may would use it if you know what tlds you will work with.
+
 ## Features
 - Fastest whois-parser `~0,04s`,
 - Offline and sync,
@@ -74,7 +88,7 @@ Basically a json with the following description:
 ## TODOs
 
 - [x] Parse dates using `dateFormat` attribute
-- [ ] Better `./tlds.json`
+- [ ] Better `tlds.json`
 - [ ] Use `rateLimited`
 - [ ] Make tests to run whois in various tlds to search which one can't be parsed
 

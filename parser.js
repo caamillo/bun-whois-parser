@@ -49,7 +49,7 @@ const parse = (data, { _, regex, etc }, parsedTld, toISO) => {
 }
 
 
-module.exports = (data, url=undefined, toISO=true, optimize=false) => {
+module.exports = (data=undefined, url=undefined, toISO=true, optimize=false) => {
 	const patterns = require('./patterns')(optimize)
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
 	if (!domain) return undefined
