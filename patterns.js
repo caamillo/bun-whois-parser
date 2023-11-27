@@ -335,7 +335,8 @@ const patterns = [
 	}
 ]
 
-tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
-
-module.exports = patterns
+module.exports = (optimize=false) => {
+	if (!optimize) tlds.map(tld => !patterns.filter(el => el.tld === tld).length ? patterns.push({ tld: tld }) : '')
+	return patterns
+}
 

@@ -1,4 +1,3 @@
-const patterns = require('./patterns')
 const { findDomain, wrapDomain, domainToTld } = require('./utils')
 
 // Deps
@@ -24,9 +23,9 @@ const sanify = (parsed, etc) => {
 	return parsed
 }
 
-const parse = (data, { tld, regex, etc }, toISO) => {
+const parse = (data, { _, regex, etc }, parsedTld, toISO) => {
 	const parsed = {}
-	parsed.tld = tld
+	parsed.tld = parsedTld
 
 	if (data.match(etc.notFound)) parsed.available = true
 	else parsed.available = false
@@ -50,12 +49,13 @@ const parse = (data, { tld, regex, etc }, toISO) => {
 }
 
 
-module.exports = (data, url=undefined, toISO=true) => {
+module.exports = (data, url=undefined, toISO=true, optimize=false) => {
+	const patterns = require('./patterns')(optimize)
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
 	if (!domain) return undefined
 	const tld = domainToTld(domain)
 	if (!tld) return undefined
-
+	
 	let pattern = patterns.find(el => el.tld === tld)
 	pattern = pattern ? {
 		tld: pattern.tld,
@@ -69,5 +69,5 @@ module.exports = (data, url=undefined, toISO=true) => {
 		}
 	} : patterns[0]
 
-	return parse(data, pattern, toISO)
+	return parse(data, pattern, tld, toISO)
 }
