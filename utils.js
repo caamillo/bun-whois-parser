@@ -1,5 +1,16 @@
+const tlds = require('./tlds.json')
+
+const domainToTld = (domain) =>
+    domain.trim().split('.').slice(-1).join().toLowerCase() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
+
+const doesTldExists = (tld) =>
+    tlds.filter(iTld => tld === iTld).length
+
 const wrapDomain = (url) =>
     url.match(/(?:\/)?((?!www\.)\b\w{1,}\b\..*?)(?:\/|\?|$)/)[1] // Grab the group
+
+const validateDomain = (domain) =>
+    domain.trim().split('.').length > 1 && doesTldExists(domainToTld(domain))
 
 const findDomain = (data, patterns) => {
     const domainNamePatterns = patterns.map(pattern => {
@@ -11,25 +22,18 @@ const findDomain = (data, patterns) => {
         .map(regex => data.match(regex)?.slice(-1)?.join()?.trim())
         .filter(match => match)
     
-    let average = 0
-    const matches = domainMatches.map(match => {
-        average += match.length
-        return match.length
-    }).filter(match => match)
-    average /= matches.length
-
-    let record = 0
-    for (let match in matches) {
-        if (!match) return
-        const near = Math.abs(matches[match] - average)
-        const nearRecord = Math.abs(matches[record] - average)
-
-        if (near < nearRecord) record = match
+    let record
+    for (let domain of domainMatches) {
+        if (validateDomain(domain.trim())) {
+            record = domain.trim()
+            break
+        }
     }
 
-    return domainMatches[record]
+    return record
 }
 
 module.exports = {
-    findDomain, wrapDomain
+    findDomain, wrapDomain,
+    tlds, domainToTld
 }

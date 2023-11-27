@@ -1,5 +1,5 @@
 const patterns = require('./patterns')
-const { findDomain, wrapDomain } = require('./utils')
+const { findDomain, wrapDomain, domainToTld } = require('./utils')
 
 // Deps
 const dayjs = require('dayjs')
@@ -53,7 +53,7 @@ const parse = (data, { tld, regex, etc }, toISO) => {
 module.exports = (data, url=undefined, toISO=true) => {
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
 	if (!domain) return undefined
-	const tld = domain.split('.').slice(-1).join().toLowerCase() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
+	const tld = domainToTld(domain)
 	if (!tld) return undefined
 
 	let pattern = patterns.find(el => el.tld === tld)
