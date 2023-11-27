@@ -80,7 +80,7 @@ Use the algorithm avoiding adding all the tlds that are not found in `patterns.j
 This parameter is setted to off by default, but you may would use it if you know what tlds you will work with.
 
 ## Features
-- Fastest whois-parser `~0,04s`,
+- Fastest whois-parser (`~0,02s` with optimize parameter, `~0,04s` without),
 - Offline and sync,
 - Domain name auto detection,
 - Domain name wrapper from URL

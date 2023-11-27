@@ -23,9 +23,9 @@ const sanify = (parsed, etc) => {
 	return parsed
 }
 
-const parse = (data, { _, regex, etc }, parsedTld, toISO) => {
+const parse = (data, { _, regex, etc }, tld, toISO) => {
 	const parsed = {}
-	parsed.tld = parsedTld
+	parsed.tld = tld
 
 	if (data.match(etc.notFound)) parsed.available = true
 	else parsed.available = false
