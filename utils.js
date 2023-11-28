@@ -1,16 +1,19 @@
 const tlds = require('./tlds.json')
 
+const sanify = (thing) =>
+    thing.trim().toLowerCase()
+
 const domainToTld = (domain) =>
-    domain.trim().split('.').slice(-1).join().toLowerCase() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
+    sanify(domain).split('.').slice(-1).join() // That seems wrong, because .co.br would be wrapped into .br; but trust me it works
 
 const doesTldExists = (tld) =>
-    tlds.filter(iTld => tld === iTld).length
+    tlds.filter(iTld => sanify(tld) === iTld).length
 
 const wrapDomain = (url) =>
     url.match(/(?:\/)?((?!www\.)\b\w{1,}\b\..*?)(?:\/|\?|$)/)[1] // Grab the group
 
 const validateDomain = (domain) =>
-    domain.trim().split('.').length > 1 && doesTldExists(domainToTld(domain))
+    sanify(domain).split('.').length > 1 && doesTldExists(domainToTld(sanify(domain)))
 
 const findDomain = (data, patterns) => {
     const domainNamePatterns = patterns.map(pattern => {
@@ -22,14 +25,30 @@ const findDomain = (data, patterns) => {
         .map(regex => data.match(regex)?.slice(-1)?.join()?.trim())
         .filter(match => match)
     
-    let record
+    const record = {
+        value: undefined,
+        isDomain: false,
+        isTld: false
+    }
+
     for (let domain of domainMatches) {
-        if (validateDomain(domain.trim())) {
-            record = domain.trim()
+        if (validateDomain(domain)) {
+            record.value = sanify(domain)
+            record.isDomain = true
             break
         }
     }
 
+    if (!record.isDomain) {
+        for (let tld of domainMatches) {
+            if (doesTldExists(tld)) {
+                record.value = sanify(tld)
+                record.isTld = true
+                break
+            }
+        }
+    }
+    
     return record
 }
 

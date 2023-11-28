@@ -11,6 +11,15 @@ const DATE_KEYS = [
 	'expirationDate'
 ]
 
+const compareAllNotFound = (patterns, data) => {
+	const allNotFounds = patterns.map(pattern => pattern?.etc?.notFound)
+		.filter(notFound => notFound)
+	const matchNotFounds = allNotFounds.map(notFound => data.match(notFound))
+		.filter(match => match).flat()
+	
+	return matchNotFounds.length
+}
+
 const sanify = (parsed, etc) => {
 	Object.keys(parsed).map(key => {
 		let value = parsed[key]
@@ -51,9 +60,11 @@ const parse = (data, { _, regex, etc }, tld, toISO) => {
 
 module.exports = (data=undefined, url=undefined, toISO=true, optimize=false) => {
 	const patterns = require('./patterns')(optimize)
+
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
-	if (!domain) return undefined
-	const tld = domainToTld(domain)
+	if (!domain || !domain?.value) return compareAllNotFound(patterns, data) ? { available: true } : undefined
+
+	const tld = typeof domain === 'string' || domain.isDomain ? domainToTld(domain.value) : domain.value
 	if (!tld) return undefined
 	
 	let pattern = patterns.find(el => el.tld === tld)

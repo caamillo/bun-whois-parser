@@ -332,6 +332,19 @@ const patterns = [
 			notFound: 'Status:\\s+AVAILABLE',
 			dateFormat: 'YYYY-MM-DD HH:mm:ss'
 		}
+	},
+	{
+		tld: 'am',
+		regex: {
+			domainName: 'Domain name: *([^\\s]+)',
+			updatedDate: 'Last modified: *(.+)',
+			creationDate: 'Registered: *(.+)',
+			expirationDate: 'Expires: *(.+)'
+		},
+		etc: {
+			dateFormat: 'YYYY-MM-DD',
+			notFound: 'No match'
+		}
 	}
 ]
 
