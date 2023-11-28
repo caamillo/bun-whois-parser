@@ -62,9 +62,11 @@ module.exports = (data=undefined, url=undefined, toISO=true, optimize=false) => 
 	const patterns = require('./patterns')(optimize)
 
 	const domain = url ? wrapDomain(url) : findDomain(data, patterns)
-	if (!domain || !domain?.value) return compareAllNotFound(patterns, data) ? { available: true } : undefined
+	if (!domain && !domain?.value) return compareAllNotFound(patterns, data) ? { available: true } : undefined
 
-	const tld = typeof domain === 'string' || domain.isDomain ? domainToTld(domain.value) : domain.value
+	const tld = typeof domain === 'string' ? domainToTld(domain) : domain?.value ? 
+		domain?.isDomain ? domainToTld(domain.value) : domain.value : undefined
+	
 	if (!tld) return undefined
 	
 	let pattern = patterns.find(el => el.tld === tld)
