@@ -26,12 +26,12 @@ try {
 
 ## Parameters
 
-| **Key**   | Description                                              | Default   |
-|-----------|----------------------------------------------------------|-----------|
-| data      | whois raw data                                           | undefined |
-| url?      | fetched url/domain                                       | undefined |
-| toISO?    | parse all dates into ISO format                          | true      |
-| optimize? | dangerous, read more in the "Optimize Parameter" section | false     |
+| **Key**       | Description                                              | Default   |
+|---------------|----------------------------------------------------------|-----------|
+| **data**      | whois raw data                                           | undefined |
+| **url?**      | fetched url/domain                                       | undefined |
+| **toISO?**    | parse all dates into ISO format                          | true      |
+| **optimize?** | dangerous, read more in the "Optimize Parameter" section | false     |
 
 ## Response
 
